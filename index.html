@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Digital Clock</title>
+    <style>
+        body{
+            background: linear-gradient(to right,blue,aqua);
+            padding:0px;
+            margin:-20px;
+        }
+        html{
+            margin: 0px;
+            overflow: hidden;
+        }
+        .wrapper{
+            border:3px solid black;
+            padding: 10px;
+            display: inline-block;
+            transform: translate(370px,150px);
+            box-shadow:1px 1px 4px 0.5px black;
+        }
+        button{
+            transform: translate(475px,200px);
+            background:linear-gradient(to left,yellow,green);
+            box-shadow:2px 2px 2px 1px black;
+        }
+        #navbar{
+            background-color:yellow;
+        }
+        #digital{
+            padding:10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <h1 id="digital">
+            Digital Clock
+        </h1>
+    </nav>
+    <button onclick="call()">Show Time</button>
+    <div class="wrapper">
+        <span id="hours">00</span>
+        <span>:</span>
+        <span id="mins">00</span>
+        <span>:</span>
+        <span id="sec">00</span>
+        <span id="ampm">AM</span>
+    </div>
+</body>
+<script>
+    function call(){
+    function displayTime(){
+        let dateTime=new Date();
+        let hr=padzero(dateTime.getHours());
+        let min=padzero(dateTime.getMinutes());
+        let sec=padzero(dateTime.getSeconds());
+        if(hr>12){
+            hr=hr-12
+            document.getElementById("ampm").innerHTML="PM";
+        }
+        else{
+            document.getElementById("ampm").innerHTML="AM";
+        }
+        document.getElementById("hours").innerHTML=hr;
+        document.getElementById("mins").innerHTML=min
+        document.getElementById("sec").innerHTML=sec;
+    }
+    function padzero(num){
+        return num<10?"0"+num:num
+    }
+    setInterval(displayTime,500)
+}
+</script>
+</html>
